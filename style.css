@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input {
+    @apply outline-none border-b-2 px-12 py-3 w-full transition-all;
+}
+input[type='email']:focus ~ label,
+input[type='password']:focus ~ label,
+input[type='text']:focus ~ label {
+    @apply opacity-100;
+}
+input[type='email']:valid ~ #correct {
+    @apply visible;
+}
+input[type='email']:invalid:not(:focus):not(:placeholder-shown) ~ #wrong {
+    @apply visible;
+}
+input:required:valid {
+    @apply border-green-500;
+}
+input:required:invalid:not(:focus):not(:placeholder-shown) {
+    @apply border-red-500;
+}
+.change-opacity {
+    @apply opacity-100;
+}
+.button {
+    @apply h-8 border border-gray-400 text-gray-400 rounded-full px-5 transition-all hover:text-white hover:bg-green-600 disabled:text-gray-400 hover:border-none disabled:border-gray-400 disabled:bg-transparent disabled:border-solid disabled:cursor-not-allowed;
+}
+.correct-btn {
+    @apply text-white bg-green-600 border-none;
+}
+.invalid-btn {
+    @apply border-none bg-red-300 text-white hover:bg-red-400 hover:text-white;
+}

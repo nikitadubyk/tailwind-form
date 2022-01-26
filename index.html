@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Login Form</title>
+    </head>
+    <body class="h-screen">
+        <div class="flex flex-col h-full">
+            <section
+                class="container overflow-y-auto flex-1-auto lg:flex-none"
+                x-data="$store.form"
+            >
+                <img
+                    src="img/abler-logo.svg"
+                    alt="logo"
+                    class="mt-10 mx-auto w-14"
+                />
+
+                <div class="mt-10 sm:w-7/12 sm:mx-auto sm:mt-20 lg:w-4/12">
+                    <h2
+                        id="title"
+                        class="text-3xl font-medium px-5 lg:text-4xl xl:text-5xl"
+                    >
+                        Welcome
+                    </h2>
+                    <form
+                        action="#"
+                        @submit.prevent="
+                            $store.form.correctEmailAndPassword();
+                            $store.form.wrongPassword();
+                            $store.form.wrongEmail();
+                        "
+                        @input.window="$store.form.disabledButton()"
+                    >
+                        <div class="mt-5 relative">
+                            <input
+                                name="email"
+                                type="email"
+                                id="email"
+                                placeholder="Email address"
+                                required
+                                pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+                                class="input lg:text-lg"
+                                x-ref="email"
+                                @input="$store.form.checkValidEmail()"
+                            />
+                            <label
+                                for="email"
+                                class="absolute left-6 top-3 lg:top-4 opacity-70 cursor-pointer"
+                            >
+                                <img
+                                    src="img/user.svg"
+                                    alt="user"
+                                    class="w-4 h-5"
+                                />
+                            </label>
+                            <img
+                                src="img/correct.svg"
+                                alt="correct"
+                                id="correct"
+                                class="w-5 absolute right-6 top-3 lg:top-4 invisible"
+                            />
+                            <img
+                                src="img/cross.svg"
+                                alt="wrong cross"
+                                id="wrong"
+                                class="w-5 absolute right-6 top-4 invisible cursor-pointer"
+                                @click='$refs.email.value = ""; $store.form.emailErrorCleanup()'
+                            />
+                        </div>
+
+                        <div class="relative">
+                            <input
+                                name="password"
+                                :type="$store.form.showPassword ? 'text' : 'password'"
+                                id="password"
+                                placeholder="Password"
+                                required
+                                minlength="5"
+                                maxlength="16"
+                                class="input lg:text-lg"
+                            />
+
+                            <label
+                                for="password"
+                                class="absolute left-6 top-3 lg:top-4 opacity-70 cursor-pointer"
+                            >
+                                <img
+                                    src="img/lock.svg"
+                                    alt="lock"
+                                    class="w-4 h-5"
+                                />
+                            </label>
+
+                            <img
+                                tabindex="0"
+                                :src='$store.form.showPassword ? "img/eye-slash.svg" : "img/eye.svg"'
+                                alt="eye"
+                                class="absolute top-4 right-5 opacity-70 cursor-pointer hover:opacity-100 transition-opacity w-5 h-5"
+                                id="eyes"
+                                @click="$store.form.togglePasswordState()"
+                            />
+                        </div>
+
+                        <div class="flex justify-between mt-5 px-6">
+                            <div class="group flex items-center">
+                                <img
+                                    src="img/info-circle.svg"
+                                    alt="info-circle"
+                                    class="opacity-60 mr-2 group-hover:opacity-100 w-4 h-4"
+                                />
+                                <a
+                                    href="#"
+                                    class="text-sm text-gray-400 group-hover:text-black lg:text-base"
+                                    >Forgot Password</a
+                                >
+                            </div>
+
+                            <button
+                                id="login"
+                                type="submit"
+                                class="button lg:text-lg"
+                                disabled
+                            >
+                                Log In
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <div
+                class="flex-0-auto w-full bg-gray-300 mt-10 lg:relative lg:bg-transparent lg:w-80 lg:mx-auto lg:mt-10 xl:w-96 2xl:w-100"
+            >
+                <div
+                    class="flex justify-between items-center py-3 px-5 lg:px-3 xl:px-0"
+                >
+                    <div
+                        class="group rounded-full p-1 bg-white cursor-pointer items-center justify-center w-6 shadow-xl lg:shadow-none"
+                    >
+                        <img
+                            src="img/globe.svg"
+                            alt="globe"
+                            class="opacity-70 transition-all group-hover:opacity-100 w-4 h-4"
+                        />
+                    </div>
+                    <div
+                        class="group flex justify-between items-center w-20 lg:w-24"
+                    >
+                        <a
+                            href="#"
+                            class="cursor-pointer font-medium text-gray-600 text-sm group-hover:text-black lg:text-base"
+                            >New user</a
+                        >
+                        <img
+                            src="img/sign-in.svg"
+                            alt="sign-in"
+                            class="opacity-70 group-hover:opacity-100 w-4 h-4"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="./main.js"></script>
+    </body>
+</html>
