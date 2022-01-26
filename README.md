@@ -14,7 +14,7 @@ Use command to start a local server
 
 To create a prod version of the project use the command
 
-`npm run prod`
+`npm run build`
 
 Login data for correct entry:
 
