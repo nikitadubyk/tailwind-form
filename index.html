@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="md:text-xl">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,108 +9,168 @@
     <body class="h-screen">
         <div class="flex flex-col h-full">
             <section
-                class="container overflow-y-auto flex-1-auto lg:flex-none"
-                x-data="$store.form"
+                class="container overflow-y-auto flex-[1_0_auto] lg:flex-none"
             >
                 <img
-                    src="img/abler-logo.svg"
+                    src="abler-logo.svg"
                     alt="logo"
                     class="mt-10 mx-auto w-14"
                 />
 
-                <div class="mt-10 sm:w-7/12 sm:mx-auto sm:mt-20 lg:w-4/12">
+                <div class="mt-10 sm:w-7/12 sm:mx-auto lg:w-5/12 lg:mt-16">
                     <h2
-                        id="title"
+                        data-js-title
                         class="text-3xl font-medium px-5 lg:text-4xl xl:text-5xl"
                     >
                         Welcome
                     </h2>
                     <form
+                        data-js-form
                         action="#"
-                        @submit.prevent="
-                            $store.form.correctEmailAndPassword();
-                            $store.form.wrongPassword();
-                            $store.form.wrongEmail();
-                        "
-                        @input.window="$store.form.disabledButton()"
+                        class="grid grid-cols-[2rem_1fr_1fr_2rem] gap-2 items-center auto-rows-max mt-5"
                     >
-                        <div class="mt-5 relative">
-                            <input
-                                name="email"
-                                type="email"
-                                id="email"
-                                placeholder="Email address"
-                                required
-                                pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
-                                class="input lg:text-lg"
-                                x-ref="email"
-                                @input="$store.form.checkValidEmail()"
-                            />
-                            <label
-                                for="email"
-                                class="absolute left-6 top-3 lg:top-4 opacity-70 cursor-pointer"
-                            >
-                                <img
-                                    src="img/user.svg"
-                                    alt="user"
-                                    class="w-4 h-5"
+                        <input
+                            data-js-email
+                            type="email"
+                            name="email"
+                            required
+                            placeholder="Email address"
+                            class="peer row-start-1 col-span-full outline-none border-b-2 border-gray-300 px-12 py-3 w-full transition-all invalid:border-red-500 valid:border-emerald-500 placeholder-shown:invalid:border-gray-300"
+                        />
+                        <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="far"
+                            data-icon="user"
+                            class="svg-inline--fa fa-user fa-w-14 w-5 h-5 row-start-1 col-start-1 opacity-60 peer-focus:opacity-100 ml-5"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z"
+                            ></path>
+                        </svg>
+
+                        <svg
+                            data-js-correct
+                            version="1.1"
+                            viewBox="0 0 512 512"
+                            xml:space="preserve"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            class="w-5 h-5 row-start-1 col-start-4 justify-self-end peer-valid:visible invisible mr-5"
+                        >
+                            <style type="text/css">
+                                .st0 {
+                                    fill: #41ad49;
+                                }
+                            </style>
+                            <g>
+                                <polygon
+                                    class="st0"
+                                    points="434.8,49 174.2,309.7 76.8,212.3 0,289.2 174.1,463.3 196.6,440.9 196.6,440.9 511.7,125.8 434.8,49     "
                                 />
-                            </label>
-                            <img
-                                src="img/correct.svg"
-                                alt="correct"
-                                id="correct"
-                                class="w-5 absolute right-6 top-3 lg:top-4 invisible"
-                            />
-                            <img
-                                src="img/cross.svg"
-                                alt="wrong cross"
-                                id="wrong"
-                                class="w-5 absolute right-6 top-4 invisible cursor-pointer"
-                                @click='$refs.email.value = ""; $store.form.emailErrorCleanup()'
-                            />
-                        </div>
+                            </g>
+                        </svg>
 
-                        <div class="relative">
-                            <input
-                                name="password"
-                                :type="$store.form.showPassword ? 'text' : 'password'"
-                                id="password"
-                                placeholder="Password"
-                                required
-                                minlength="5"
-                                maxlength="16"
-                                class="input lg:text-lg"
-                            />
-
-                            <label
-                                for="password"
-                                class="absolute left-6 top-3 lg:top-4 opacity-70 cursor-pointer"
-                            >
-                                <img
-                                    src="img/lock.svg"
-                                    alt="lock"
-                                    class="w-4 h-5"
+                        <svg
+                            data-js-wrong
+                            tabindex="0"
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 28 28"
+                            style="enable-background: new 0 0 28 28"
+                            xml:space="preserve"
+                            class="w-5 h-5 row-start-1 col-start-4 justify-self-end invisible peer-invalid:visible peer-placeholder-shown:peer-invalid:invisible mr-5 cursor-pointer"
+                        >
+                            <g>
+                                <path
+                                    style="fill: #e20000"
+                                    d="M0,24l4,4l10-10l10,10l4-4L18,14L28,4l-4-4L14,10L4,0L0,4l10,10L0,24z"
                                 />
-                            </label>
+                            </g>
+                        </svg>
 
-                            <img
-                                tabindex="0"
-                                :src='$store.form.showPassword ? "img/eye-slash.svg" : "img/eye.svg"'
-                                alt="eye"
-                                class="absolute top-4 right-5 opacity-70 cursor-pointer hover:opacity-100 transition-opacity w-5 h-5"
-                                id="eyes"
-                                @click="$store.form.togglePasswordState()"
-                            />
-                        </div>
+                        <input
+                            data-js-password
+                            type="password"
+                            name="password"
+                            required
+                            minlength="5"
+                            maxlength="16"
+                            placeholder="Password"
+                            class="peer row-start-2 col-span-full outline-none border-b-2 px-12 py-3 w-full transition-all border-gray-300 invalid:border-red-500 valid:border-emerald-500 placeholder-shown:invalid:border-gray-300"
+                        />
 
-                        <div class="flex justify-between mt-5 px-6">
+                        <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fas"
+                            data-icon="lock"
+                            class="svg-inline--fa fa-lock fa-w-14 w-5 h-5 row-start-2 col-start-1 ml-5 opacity-60 peer-focus:opacity-100"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"
+                            ></path>
+                        </svg>
+
+                        <svg
+                            tabindex="0"
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="far"
+                            data-icon="eye"
+                            class="svg-inline--fa fa-eye fa-w-18 w-5 h-5 row-start-2 col-start-4 justify-self-end cursor-pointer mr-5 opacity-60 hover:opacity-100"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 576 512"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"
+                            ></path>
+                        </svg>
+
+                        <svg
+                            tabindex="0"
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="far"
+                            data-icon="eye-slash"
+                            class="svg-inline--fa fa-eye-slash fa-w-20 w-5 h-5 row-start-2 col-start-4 justify-self-end cursor-pointer mr-5 opacity-60 hover:opacity-100"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 512"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M634 471L36 3.51A16 16 0 0 0 13.51 6l-10 12.49A16 16 0 0 0 6 41l598 467.49a16 16 0 0 0 22.49-2.49l10-12.49A16 16 0 0 0 634 471zM296.79 146.47l134.79 105.38C429.36 191.91 380.48 144 320 144a112.26 112.26 0 0 0-23.21 2.47zm46.42 219.07L208.42 260.16C210.65 320.09 259.53 368 320 368a113 113 0 0 0 23.21-2.46zM320 112c98.65 0 189.09 55 237.93 144a285.53 285.53 0 0 1-44 60.2l37.74 29.5a333.7 333.7 0 0 0 52.9-75.11 32.35 32.35 0 0 0 0-29.19C550.29 135.59 442.93 64 320 64c-36.7 0-71.71 7-104.63 18.81l46.41 36.29c18.94-4.3 38.34-7.1 58.22-7.1zm0 288c-98.65 0-189.08-55-237.93-144a285.47 285.47 0 0 1 44.05-60.19l-37.74-29.5a333.6 333.6 0 0 0-52.89 75.1 32.35 32.35 0 0 0 0 29.19C89.72 376.41 197.08 448 320 448c36.7 0 71.71-7.05 104.63-18.81l-46.41-36.28C359.28 397.2 339.89 400 320 400z"
+                            ></path>
+                        </svg>
+                        <div class="col-span-4 flex justify-between mt-5 px-6">
                             <div class="group flex items-center">
-                                <img
-                                    src="img/info-circle.svg"
-                                    alt="info-circle"
-                                    class="opacity-60 mr-2 group-hover:opacity-100 w-4 h-4"
-                                />
+                                <svg
+                                    aria-hidden="true"
+                                    focusable="false"
+                                    data-prefix="fas"
+                                    data-icon="info-circle"
+                                    class="svg-inline--fa fa-info-circle fa-w-16 opacity-60 mr-2 group-hover:opacity-100 w-4 h-4"
+                                    role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 512 512"
+                                >
+                                    <path
+                                        fill="currentColor"
+                                        d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"
+                                    ></path>
+                                </svg>
                                 <a
                                     href="#"
                                     class="text-sm text-gray-400 group-hover:text-black lg:text-base"
@@ -119,9 +179,9 @@
                             </div>
 
                             <button
-                                id="login"
                                 type="submit"
-                                class="button lg:text-lg"
+                                class="button"
+                                data-js-button
                                 disabled
                             >
                                 Log In
@@ -132,7 +192,7 @@
             </section>
 
             <div
-                class="flex-0-auto w-full bg-gray-300 mt-10 lg:relative lg:bg-transparent lg:w-80 lg:mx-auto lg:mt-10 xl:w-96 2xl:w-100"
+                class="flex-[0_0_auto] w-full bg-gray-300 mt-10 lg:relative lg:bg-transparent lg:w-80 lg:mx-auto lg:mt-10 xl:w-96 2xl:w-[29.5rem]"
             >
                 <div
                     class="flex justify-between items-center py-3 px-5 lg:px-3 xl:px-0"
@@ -140,11 +200,22 @@
                     <div
                         class="group rounded-full p-1 bg-white cursor-pointer items-center justify-center w-6 shadow-xl lg:shadow-none"
                     >
-                        <img
-                            src="img/globe.svg"
-                            alt="globe"
-                            class="opacity-70 transition-all group-hover:opacity-100 w-4 h-4"
-                        />
+                        <svg
+                            tabindex="0"
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fas"
+                            data-icon="globe"
+                            class="svg-inline--fa fa-globe fa-w-16 opacity-70 transition-all group-hover:opacity-100 w-4 h-4"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 496 512"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"
+                            ></path>
+                        </svg>
                     </div>
                     <div
                         class="group flex justify-between items-center w-20 lg:w-24"
@@ -154,11 +225,21 @@
                             class="cursor-pointer font-medium text-gray-600 text-sm group-hover:text-black lg:text-base"
                             >New user</a
                         >
-                        <img
-                            src="img/sign-in.svg"
-                            alt="sign-in"
-                            class="opacity-70 group-hover:opacity-100 w-4 h-4"
-                        />
+                        <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fas"
+                            data-icon="sign-in-alt"
+                            class="svg-inline--fa fa-sign-in-alt fa-w-16 opacity-70 group-hover:opacity-100 w-4 h-4"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M416 448h-84c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h84c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zm-47-201L201 79c-15-15-41-4.5-41 17v96H24c-13.3 0-24 10.7-24 24v96c0 13.3 10.7 24 24 24h136v96c0 21.5 26 32 41 17l168-168c9.3-9.4 9.3-24.6 0-34z"
+                            ></path>
+                        </svg>
                     </div>
                 </div>
             </div>
