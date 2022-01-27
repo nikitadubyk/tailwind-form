@@ -12,10 +12,12 @@
     @apply border-none bg-red-300 text-white hover:bg-red-400 hover:text-white;
 }
 
-input[type='password'] ~ svg[data-icon='eye'] {
+input[type='password'] ~ svg[data-icon='eye'],
+input[type='password'] ~ svg[data-icon='unlock'] {
     display: none;
 }
 
-input[type='text'] ~ svg[data-icon='eye-slash'] {
+input[type='text'] ~ svg[data-icon='eye-slash'],
+input[type='text'] ~ svg[data-icon='lock'] {
     display: none;
 }
