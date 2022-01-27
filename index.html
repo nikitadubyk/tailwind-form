@@ -27,7 +27,7 @@
                     <form
                         data-js-form
                         action="#"
-                        class="grid grid-cols-[2rem_1fr_1fr_2rem] gap-2 items-center auto-rows-max mt-5"
+                        class="grid grid-cols-[2rem_1fr_1fr_2rem] gap-3 items-center auto-rows-max mt-5"
                     >
                         <input
                             data-js-email
@@ -155,13 +155,16 @@
                             ></path>
                         </svg>
                         <div class="col-span-4 flex justify-between mt-5 px-6">
-                            <div class="group flex items-center">
+                            <a
+                                href="#"
+                                class="inline-block opacity-60 hover:opacity-100"
+                            >
                                 <svg
                                     aria-hidden="true"
                                     focusable="false"
                                     data-prefix="fas"
                                     data-icon="info-circle"
-                                    class="svg-inline--fa fa-info-circle fa-w-16 opacity-60 mr-2 group-hover:opacity-100 w-4 h-4"
+                                    class="svg-inline--fa fa-info-circle fa-w-16 mr-2 w-5 h-5 inline-block"
                                     role="img"
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"
@@ -171,12 +174,8 @@
                                         d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"
                                     ></path>
                                 </svg>
-                                <a
-                                    href="#"
-                                    class="text-sm text-gray-400 group-hover:text-black lg:text-base"
-                                    >Forgot Password</a
-                                >
-                            </div>
+                                Forgot Password
+                            </a>
 
                             <button
                                 type="submit"
@@ -194,9 +193,7 @@
             <div
                 class="flex-[0_0_auto] w-full bg-gray-300 mt-10 lg:relative lg:bg-transparent lg:w-80 lg:mx-auto lg:mt-10 xl:w-96 2xl:w-[29.5rem]"
             >
-                <div
-                    class="flex justify-between items-center py-3 px-5 lg:px-3 xl:px-0"
-                >
+                <div class="flex justify-between py-3 px-5 lg:px-3 xl:px-0">
                     <div
                         class="group rounded-full p-1 bg-white cursor-pointer items-center justify-center w-6 shadow-xl lg:shadow-none"
                     >
@@ -206,7 +203,7 @@
                             focusable="false"
                             data-prefix="fas"
                             data-icon="globe"
-                            class="svg-inline--fa fa-globe fa-w-16 opacity-70 transition-all group-hover:opacity-100 w-4 h-4"
+                            class="svg-inline--fa fa-globe fa-w-16 opacity-60 transition-all group-hover:opacity-100 w-4 h-4"
                             role="img"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 496 512"
@@ -217,20 +214,17 @@
                             ></path>
                         </svg>
                     </div>
-                    <div
-                        class="group flex justify-between items-center w-20 lg:w-24"
+                    <a
+                        href="#"
+                        class="cursor-pointer font-medium text-gray-600 text-s lg:text-base opacity-60 hover:opacity-100"
                     >
-                        <a
-                            href="#"
-                            class="cursor-pointer font-medium text-gray-600 text-sm group-hover:text-black lg:text-base"
-                            >New user</a
-                        >
+                        New user
                         <svg
                             aria-hidden="true"
                             focusable="false"
                             data-prefix="fas"
                             data-icon="sign-in-alt"
-                            class="svg-inline--fa fa-sign-in-alt fa-w-16 opacity-70 group-hover:opacity-100 w-4 h-4"
+                            class="svg-inline--fa fa-sign-in-alt fa-w-16 w-5 h-5 inline-block"
                             role="img"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"
@@ -238,9 +232,8 @@
                             <path
                                 fill="currentColor"
                                 d="M416 448h-84c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h84c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zm-47-201L201 79c-15-15-41-4.5-41 17v96H24c-13.3 0-24 10.7-24 24v96c0 13.3 10.7 24 24 24h136v96c0 21.5 26 32 41 17l168-168c9.3-9.4 9.3-24.6 0-34z"
-                            ></path>
-                        </svg>
-                    </div>
+                            ></path></svg
+                    ></a>
                 </div>
             </div>
         </div>
